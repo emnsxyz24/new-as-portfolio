@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
+---
+
+<Layout>
+  <div class="relative flex min-h-screen w-full flex-col">
+    <Header />
+
+    <main class="grow pt-20">
+      <Hero />
+      <About />
+      <Projects />
+      <Contact />
+    </main>
+  </div>
+</Layout>

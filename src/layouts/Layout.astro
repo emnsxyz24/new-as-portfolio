@@ -1,0 +1,55 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Edy Mikhael | Portfolio",
+  description = "Let's connect and work on something amazing together.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-background-dark font-display text-white overflow-x-hidden">
+    <slot />
+
+    <script is:inline src="/particles.min.js"></script>
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function () {
+        particlesJS.load(
+          "particles-js",
+          "/particlesjs-config.json",
+          function () {
+            console.log("particles.js loaded");
+          },
+        );
+      });
+    </script>
+  </body>
+</html>
