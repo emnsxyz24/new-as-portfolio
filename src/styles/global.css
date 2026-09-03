@@ -6,23 +6,12 @@ html {
 
 @theme {
   --color-primary: #a8f906;
-  --color-background-light: #f7f8f5;
   --color-background-dark: #161811;
   --color-surface-dark: #23271b;
   --color-border-dark: #343a27;
 
   --font-display: "Space Grotesk", sans-serif;
   --font-sans: "Space Grotesk", sans-serif;
-}
-
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
 
 .text-outline {

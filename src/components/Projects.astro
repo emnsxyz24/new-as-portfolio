@@ -71,8 +71,11 @@ const projects = projectEntries
                     <h3 class="text-3xl font-bold uppercase mb-1 group-hover:text-primary transition-colors">
                       {project.name}
                     </h3>
-                    <p class="text-gray-400 text-sm uppercase tracking-wider mb-2">
+                    <p class="text-primary/90 text-xs font-bold uppercase tracking-wider mb-2">
                       {project.type}
+                    </p>
+                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                      {project.description}
                     </p>
                     <div class="flex gap-2 flex-wrap">
                       {project.stack.map((tech) => (
