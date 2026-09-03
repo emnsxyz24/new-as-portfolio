@@ -1,0 +1,9 @@
+{
+  "name": "Invoicipedia",
+  "type": "Fullstack Web App",
+  "order": 3,
+  "stack": ["Next.js", "TypeScript", "Clerk", "Midtrans"],
+  "image": "https://lh3.googleusercontent.com/pw/AP1GczPI5O2mQ0EJpszbT6-9bbtIlzv6bBL0SSZ3H6G59CRbKtjTZuSMRPDvZz6MILOKmK2cWOh6-9bQbINXOu6MRqE9sMv0H7zasqHPA5DGagDjwKph7lwcfejAkOzwXjbqw-bbsloi5_7eM-ml9DsNNnwC=w1889-h944-s-no-gm?authuser=0",
+  "github": "https://github.com/emnsxyz24/simple-invoicing-app",
+  "description": "Simple invoicing app with authentication and payments"
+}

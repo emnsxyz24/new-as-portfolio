@@ -1,0 +1,9 @@
+{
+  "name": "Jubi & Lee",
+  "type": "Fullstack E-Commerce",
+  "order": 1,
+  "stack": ["Nuxt 3", "NestJS", "Prisma", "PostgreSQL", "Tailwind"],
+  "image": "../../assets/projects/jubinlee.png",
+  "github": "https://github.com/emnsxyz24/jubinlee-commerce",
+  "description": "Full-stack monorepo fashion e-commerce with Nuxt 3 storefront, NestJS API, and WhatsApp checkout"
+}

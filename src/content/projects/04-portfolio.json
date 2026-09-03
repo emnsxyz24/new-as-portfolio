@@ -1,0 +1,9 @@
+{
+  "name": "Portfolio",
+  "type": "Web Application",
+  "order": 5,
+  "stack": ["Astro", "Tailwind"],
+  "image": "../../assets/projects/portfolio.png",
+  "github": "https://github.com/emnsxyz24/new-as-portfolio",
+  "description": "Personal Portfolio"
+}

@@ -1,56 +1,13 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import "@splidejs/splide/css";
 
-const projects = [
-  {
-    name: "GigNesia",
-    type: "Fullstack Web App",
-    stack: ["React", "Express.js", "MongoDB", "Midtrans"],
-    image:
-      "https://lh3.googleusercontent.com/pw/AP1GczNCskKju8ki2XVwo7Ro9riggCZJOPRmkuMDTTgo0L0mRB9aXw-mP4042N5hT6uKz_hDGK5W3sF5ekjFpLRmV21zDXuu5PyjIrczT5e4MGHuoOVgIH08UCqSVxAQIZZ8DIbqgMtlb7AE1EBudOOljZV2=w1888-h945-s-no-gm?authuser=0",
-    github: "https://github.com/emnsxyz24/gignesia",
-    deploy: "https://gignesia.vercel.app/",
-    description:
-      "Freelance marketplace platform connecting clients with freelancers",
-  },
-  {
-    name: "Invoicipedia",
-    type: "Fullstack Web App",
-    stack: ["Next.js", "TypeScript", "Clerk", "Midtrans"],
-    image:
-      "https://lh3.googleusercontent.com/pw/AP1GczPI5O2mQ0EJpszbT6-9bbtIlzv6bBL0SSZ3H6G59CRbKtjTZuSMRPDvZz6MILOKmK2cWOh6-9bQbINXOu6MRqE9sMv0H7zasqHPA5DGagDjwKph7lwcfejAkOzwXjbqw-bbsloi5_7eM-ml9DsNNnwC=w1889-h944-s-no-gm?authuser=0",
-    github: "https://github.com/emnsxyz24/simple-invoicing-app",
-    deploy: "https://simple-invoicing-app.vercel.app/",
-    description: "Simple invoicing app with authentication and payments",
-  },
-  {
-    name: "Kedai Imaji",
-    type: "Fullstack Web Application",
-    stack: ["Flask", "MongoDB", "Python"],
-    image:
-      "https://lh3.googleusercontent.com/pw/AP1GczNL-YuoJUXNv82hKXAkOqOLDaRS3reN6Z17bbyIulboXJrLh2sjEmpHEeRRibLY8mF1WkXbORm8MnuYkP5_fd9OEeV-EuwthKY6PHU7ov0gdI29IeKMXgw9tdKEUJKGXOnZaESgcWk8iXvZyxyhodNq=w1892-h951-s-no-gm?authuser=0",
-    github: "https://github.com/emnsxyz24/MSIB-task-coffeeshop",
-    deploy: "https://last-project-fxi5.vercel.app/",
-    description: "Coffee shop app with menu, orders, and inventory",
-  },
-  {
-    name: "Portfolio",
-    type: "Web Application",
-    stack: ["Astro", "Tailwind"],
-    image:
-      "https://lh3.googleusercontent.com/pw/AP1GczPhJrTiG7kI1IxcpvhXNP8QfCndxoa3U14e1XlWMEqwPbkzqlccmEzsOVpDJC6HGilJ2nPM9WK5iaMxvjlmFICEylqYR59kDAk6U7ItKgNhPEaJqRELQFjLfjUyZaRWshM5VNU5RKpb2vQoysLUqbMJ=w1882-h944-s-no-gm",
-    github: "https://github.com/emnsxyz24/new-as-portfolio",
-    deploy: "https://edymikhael-portfolio.vercel.app/",
-    description: "Personal Portfolio",
-  },
-];
+const projectEntries = await getCollection("projects");
+const projects = projectEntries
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => entry.data);
 ---
-
-<!-- splide - slide -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css"
-/>
 
 <section
   class="py-24 border-b border-border-dark overflow-hidden"
@@ -106,19 +63,6 @@ const projects = [
                         GitHub
                       </a>
                     )}
-                    {project.deploy && (
-                      <a
-                        href={project.deploy}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="flex items-center gap-2 px-3 py-2 bg-primary text-background-dark hover:bg-white transition-colors text-sm font-bold uppercase"
-                      >
-                        <span class="material-symbols-outlined text-base">
-                          open_in_new
-                        </span>
-                        Live
-                      </a>
-                    )}
                   </div>
                 </div>
 
@@ -151,12 +95,13 @@ const projects = [
   </section>
 </section>
 
-<script
-  is:inline
-  src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"
-></script>
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", function () {
+<script>
+  import Splide from "@splidejs/splide";
+
+  function initSplide() {
+    const splideEl = document.getElementById("projects-splide");
+    if (!splideEl) return;
+
     const splide = new Splide("#projects-splide", {
       type: "slide",
       perPage: 3,
@@ -183,8 +128,8 @@ const projects = [
 
     splide.mount();
 
-    const splideEl = document.getElementById("projects-splide");
     const track = splideEl.querySelector(".splide__track");
+    if (!track) return;
 
     let isAnimating = false;
     const BOUNDARY_DELAY = 10;
@@ -202,13 +147,14 @@ const projects = [
     track.addEventListener(
       "wheel",
       function (e) {
-        const isScrollingUp = e.deltaY < 0;
-        const isScrollingDown = e.deltaY > 0;
+        const wheelEvent = e as WheelEvent;
+        const isScrollingUp = wheelEvent.deltaY < 0;
+        const isScrollingDown = wheelEvent.deltaY > 0;
         const isAtStart = splide.index === 0;
         const isAtEnd = splide.index >= splide.length - splide.options.perPage;
 
         if (isAnimating) {
-          e.preventDefault();
+          wheelEvent.preventDefault();
           return;
         }
 
@@ -220,7 +166,7 @@ const projects = [
           return;
         }
 
-        e.preventDefault();
+        wheelEvent.preventDefault();
 
         if (isScrollingDown) {
           splide.go(">");
@@ -230,7 +176,13 @@ const projects = [
       },
       { passive: false },
     );
-  });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSplide);
+  } else {
+    initSplide();
+  }
 </script>
 
 <style>
