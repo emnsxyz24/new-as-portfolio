@@ -112,8 +112,8 @@ const projects = projectEntries
       pagination: false,
       drag: "free",
       snap: true,
-      wheel: false,
-      speed: 400,
+      wheel: true,
+      releaseWheel: true,
       breakpoints: {
         1024: {
           perPage: 2,
@@ -127,55 +127,6 @@ const projects = projectEntries
     });
 
     splide.mount();
-
-    const track = splideEl.querySelector(".splide__track");
-    if (!track) return;
-
-    let isAnimating = false;
-    const BOUNDARY_DELAY = 10;
-
-    splide.on("move", function () {
-      isAnimating = true;
-    });
-
-    splide.on("moved", function () {
-      setTimeout(() => {
-        isAnimating = false;
-      }, BOUNDARY_DELAY);
-    });
-
-    track.addEventListener(
-      "wheel",
-      function (e) {
-        const wheelEvent = e as WheelEvent;
-        const isScrollingUp = wheelEvent.deltaY < 0;
-        const isScrollingDown = wheelEvent.deltaY > 0;
-        const isAtStart = splide.index === 0;
-        const isAtEnd = splide.index >= splide.length - splide.options.perPage;
-
-        if (isAnimating) {
-          wheelEvent.preventDefault();
-          return;
-        }
-
-        if (isScrollingUp && isAtStart) {
-          return;
-        }
-
-        if (isScrollingDown && isAtEnd) {
-          return;
-        }
-
-        wheelEvent.preventDefault();
-
-        if (isScrollingDown) {
-          splide.go(">");
-        } else {
-          splide.go("<");
-        }
-      },
-      { passive: false },
-    );
   }
 
   if (document.readyState === "loading") {
