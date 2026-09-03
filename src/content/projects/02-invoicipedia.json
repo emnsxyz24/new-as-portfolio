@@ -1,9 +1,0 @@
-{
-  "name": "Invoicipedia",
-  "type": "Fullstack Web App",
-  "order": 3,
-  "stack": ["Next.js", "TypeScript", "Clerk", "Midtrans"],
-  "image": "../../assets/projects/invoicepedia.png",
-  "github": "https://github.com/emnsxyz24/simple-invoicing-app",
-  "description": "Simple invoicing app with authentication and payments"
-}

@@ -1,9 +1,0 @@
-{
-  "name": "Kedai Imaji",
-  "type": "Fullstack Web Application",
-  "order": 4,
-  "stack": ["Flask", "MongoDB", "Python"],
-  "image": "../../assets/projects/kedai-imaji.png",
-  "github": "https://github.com/emnsxyz24/MSIB-task-coffeeshop",
-  "description": "Coffee shop app with menu, orders, and inventory"
-}

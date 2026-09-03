@@ -1,9 +1,0 @@
-{
-  "name": "GigNesia",
-  "type": "Fullstack Web App",
-  "order": 2,
-  "stack": ["React", "Express.js", "MongoDB", "Midtrans"],
-  "image": "../../assets/projects/gignesia.png",
-  "github": "https://github.com/emnsxyz24/gignesia",
-  "description": "Freelance marketplace platform connecting clients with freelancers"
-}
